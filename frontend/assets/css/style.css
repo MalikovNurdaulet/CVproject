@@ -410,7 +410,7 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active { max-height: 1000px; }
 
 .sidebar-info {
   position: relative;
@@ -1551,7 +1551,8 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .separator { margin: 32px 0; }
 
-  .contacts-list { gap: 20px; }
+  .contacts-list { gap: 20px; 
+  }
 
   .contact-info {
     max-width: calc(100% - 64px);
