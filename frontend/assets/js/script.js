@@ -227,3 +227,151 @@ document.addEventListener("DOMContentLoaded", () => {
   experienceEl.textContent = `${text}`;
 });
 
+
+
+// === Clients: slow infinite scroll + center color highlight ===
+document.addEventListener('DOMContentLoaded', () => {
+  const wrapper = document.querySelector('.clients-scroll-wrapper');
+  const list = document.querySelector('.clients-list');
+  if (!wrapper || !list) return;
+
+  // duplicate content for seamless loop
+  list.innerHTML = list.innerHTML + list.innerHTML;
+
+  // collect ALL images after duplication
+  const imgs = Array.from(list.querySelectorAll('.clients-item img'));
+
+  // speed (px per second). Increase to make it faster
+  let pxPerSecond = 10;
+
+  let isPaused = false;
+  let last = performance.now();
+  let lastColorUpdate = 0;
+
+  function step(now) {
+    const dt = now - last;
+    last = now;
+
+    if (!isPaused) {
+      wrapper.scrollLeft += (pxPerSecond * dt) / 1000;
+
+      // loop when we scrolled half of the content (because we doubled it)
+      const half = list.scrollWidth / 2;
+      if (wrapper.scrollLeft >= half) {
+        wrapper.scrollLeft -= half;
+      }
+    }
+
+    // update color state ~10x per second
+    if (now - lastColorUpdate > 100) {
+      updateCenterHighlight();
+      lastColorUpdate = now;
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function updateCenterHighlight() {
+    const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
+    const radius = 100; // px around center where we consider "active"
+
+    imgs.forEach((img) => {
+      const item = img.parentElement; // .clients-item
+      const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+      const distance = Math.abs(center - itemCenter);
+
+      if (distance <= radius) {
+        img.classList.add('active');
+      } else {
+        img.classList.remove('active');
+      }
+    });
+  }
+
+  // Pause/resume on hover/focus (desktop)
+  ['mouseenter', 'focusin'].forEach(evt =>
+    wrapper.addEventListener(evt, () => { isPaused = true; })
+  );
+  ['mouseleave', 'focusout'].forEach(evt =>
+    wrapper.addEventListener(evt, () => { isPaused = false; })
+  );
+
+  // Pause/resume on touch (mobile)
+  wrapper.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
+  wrapper.addEventListener('touchend',   () => { isPaused = false; }, { passive: true });
+
+  // kick off
+  requestAnimationFrame(step);
+});
+
+
+
+  // === Clients scroll animation color logic ===
+// === Clients: slow infinite scroll + center color highlight (iPhone-safe) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".clients-scroll-wrapper");
+  const list = document.querySelector(".clients-list");
+  if (!wrapper || !list) return;
+
+  // Duplicate list for seamless loop
+  list.innerHTML += list.innerHTML;
+
+  const imgs = Array.from(list.querySelectorAll(".clients-item img"));
+
+  // 💨 Scroll speed (desktop vs mobile)
+  let speed = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    ? 0.5  // a bit faster on iPhone
+    : 0.7; // slower on desktop
+
+  let pos = 0;
+  let isPaused = false;
+  let hoverTimer = null;
+
+  function animate() {
+    if (!isPaused) {
+      pos -= speed;
+      list.style.transform = `translateX(${pos}px)`;
+
+      const halfWidth = list.scrollWidth / 2;
+      if (Math.abs(pos) >= halfWidth) pos = 0;
+
+      highlightCenter();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // 🎨 Highlight image in the center area
+  function highlightCenter() {
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const centerX = wrapperRect.left + wrapperRect.width / 2;
+    const range = wrapperRect.width * 0.1; // 10% of width around center
+
+    imgs.forEach((img) => {
+      const rect = img.getBoundingClientRect();
+      const imgCenter = rect.left + rect.width / 2;
+      const distance = Math.abs(centerX - imgCenter);
+
+      if (distance < range) img.classList.add("active");
+      else img.classList.remove("active");
+    });
+  }
+
+  // 🖱️ Pause immediately when mouse moves inside
+  wrapper.addEventListener("mousemove", () => {
+    isPaused = true;
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => (isPaused = false), 1500); // resume after 1.5s idle
+  });
+
+  // Pause when entering with mouse, resume when leaving
+  wrapper.addEventListener("mouseenter", () => (isPaused = true));
+  wrapper.addEventListener("mouseleave", () => (isPaused = false));
+
+  // 📱 Pause/resume on iPhone/iPad touch
+  wrapper.addEventListener("touchstart", () => (isPaused = true), { passive: true });
+  wrapper.addEventListener("touchend", () => (isPaused = false), { passive: true });
+
+  // Start animation
+  requestAnimationFrame(animate);
+});
+

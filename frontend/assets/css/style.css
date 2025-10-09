@@ -815,7 +815,60 @@ main {
  * #clients 
  */
 
-.clients { margin-bottom: 15px; }
+ /* === CLIENTS (Certificates) === */
+.clients {
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden; /* hide the overflow, we scroll the inner wrapper */
+}
+
+.clients-scroll-wrapper {
+  width: 100%;
+  overflow: hidden; /* we control scrollLeft in JS */
+}
+
+.clients-list {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 25px;
+  /* No overflow-x, no scroll-snap, no CSS animation */
+  will-change: transform;
+}
+
+.clients-item {
+  flex: 0 0 auto;
+  width: 160px;        /* tweak as you like */
+}
+
+.clients-item img {
+  width: 100%;
+  filter: grayscale(1);
+  transition: filter 0.4s ease;
+  opacity: 0.9;
+}
+
+/* when an image is near the center, we color it */
+.clients-item img.active {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+
+/* .clients { 
+  margin-bottom: 15px; 
+
+
+  overflow: hidden; 
+  position: relative;
+}
+
+
+.clients-scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
 
 .clients-list {
   display: flex;
@@ -830,7 +883,30 @@ main {
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
   scroll-padding-inline: 25px;
+} 
+
+
+.clients-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  animation: scroll-left 11.2s linear infinite; /* slower speed */
 }
+
+.clients-list:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 
 .clients-item {
   min-width: 50%;
@@ -843,7 +919,8 @@ main {
   transition: var(--transition-1);
 }
 
-.clients-item img:hover { filter: grayscale(0); }
+.clients-item img:hover { filter: grayscale(0); } */
+
 
 
 
