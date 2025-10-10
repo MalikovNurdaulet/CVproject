@@ -429,3 +429,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// === Горизонтальная прокрутка для блока testimonials ===
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollContainer = document.querySelector(".testimonials-list.has-scrollbar");
+  if (!scrollContainer) return;
+
+  scrollContainer.addEventListener("wheel", (e) => {
+    // Если пользователь крутит колесо — прокручиваем по оси X
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      scrollContainer.scrollLeft += e.deltaY;
+    }
+  }, { passive: false });
+});
+
