@@ -43,8 +43,14 @@ for (let i = 0; i < testimonialsItem.length; i++) {
     modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
     modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
 
-    testimonialsModalFunc();
+    // ✅ Добавляем индивидуальную дату
+    const modalDate = document.querySelector(".testimonials-modal time");
+    const date = this.getAttribute("data-date");
+    if (modalDate && date) {
+      modalDate.textContent = date;
+    }
 
+    testimonialsModalFunc();
   });
 
 }
