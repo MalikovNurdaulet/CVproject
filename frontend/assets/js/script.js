@@ -381,3 +381,51 @@ document.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(animate);
 });
 
+
+
+// === PDF Viewer (delegated) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const pdfOverlay = document.getElementById("pdfViewerOverlay");
+  const pdfFrame   = document.getElementById("pdfFrame");
+  if (!pdfOverlay || !pdfFrame) return;
+
+  // Ловим клики по .open-pdf-btn где бы она ни была (в карточке или уже внутри модалки)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".open-pdf-btn");
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation(); // не закрываем модалку/оверлеи
+
+    const pdfUrl = btn.getAttribute("data-pdf");
+    if (!pdfUrl) return;
+
+    // iOS: иногда <iframe> с PDF ведет себя капризно — откроем в новой вкладке
+    const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isiOS) {
+      window.open(pdfUrl, "_blank");
+      return;
+    }
+
+    // Параметры просмотра: без панелей, по ширине
+    pdfFrame.src = `${pdfUrl}#toolbar=1&navpanes=0&view=FitH`;
+    pdfOverlay.classList.add("active");
+  });
+
+  // Закрытие кликом по фону
+  pdfOverlay.addEventListener("click", (e) => {
+    if (e.target === pdfOverlay) closePDF();
+  });
+
+  // Закрытие по ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePDF();
+  });
+
+  function closePDF() {
+    pdfOverlay.classList.remove("active");
+    pdfFrame.src = "";
+  }
+});
+
+

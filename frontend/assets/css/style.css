@@ -1,90 +1,3 @@
-.experience-title {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px; /* небольшой отступ между текстами */
-  text-transform: none; /* снимаем верхний регистр */
-}
-
-.experience-inline {
-  font-size: 0.9em;
-  color: var(--orange-yellow-crayola);
-  font-weight: 500;
-  text-transform: none;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-2px); }
-  to { opacity: 1; transform: translateY(0); }
-  
-}
-
-
-
-/* === СТИЛЬ ДЛЯ КРАСИВОЙ WHATSAPP-КНОПКИ === */
-.whatsapp-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(37, 211, 102, 0.15); /* мягкий зелёный фон */
-  color: #25D366; /* фирменный цвет WhatsApp */
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-top: 6px;
-  border: 1px solid rgba(37, 211, 102, 0.4);
-  box-shadow: 0 0 8px rgba(37, 211, 102, 0.2);
-}
-
-.whatsapp-link ion-icon {
-  font-size: 18px;
-}
-
-.whatsapp-link:hover {
-  background: #25D366;
-  color: #fff; /* меняем цвет текста на белый */
-  box-shadow: 0 0 12px rgba(37, 211, 102, 0.6);
-  transform: translateY(-2px); /* лёгкий подскок при наведении */
-}
-
-.whatsapp-link:active {
-  transform: scale(0.98); /* эффект клика */
-}
-
-/* === СТИЛЬ ДЛЯ КРАСИВОЙ TELEGRAM-КНОПКИ === */
-.telegram-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0, 136, 204, 0.15); /* мягкий синий фон */
-  color: #0088cc; /* фирменный цвет Telegram */
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-top: 6px;
-  border: 1px solid rgba(0, 136, 204, 0.4);
-  box-shadow: 0 0 8px rgba(0, 136, 204, 0.2);
-}
-
-.telegram-link ion-icon {
-  font-size: 18px;
-}
-
-.telegram-link:hover {
-  background: #0088cc;
-  color: #fff;
-  box-shadow: 0 0 12px rgba(0, 136, 204, 0.6);
-  transform: translateY(-2px);
-}
-
-.telegram-link:active {
-  transform: scale(0.98);
-}
-
-
 /*-----------------------------------*\
   #style.css
 \*-----------------------------------*/
@@ -2095,5 +2008,181 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .contact-link {
   white-space: nowrap !important; /* чтобы email не переносился */
+}
+
+
+/* CHECK POINT */
+
+
+/* === PDF Button Styles === */
+.open-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--bg-primary, #222);
+  color: var(--white, #fff);
+  border: none;
+  border-radius: 12px;
+  font-size: var(--fs-7, 1rem);  /* было 0.9rem */
+  padding: 12px 22px;           /* чуть больше */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-top: 12px; /* 🔹 отступ сверху от параграфа */
+
+}
+
+/* при наведении */
+.open-pdf-btn:hover {
+  background-color: var(--orange-yellow-crayola, #f9a825);
+  color: #111;
+  transform: translateY(-2px);
+}
+
+/* при нажатии */
+.open-pdf-btn:active {
+  transform: scale(0.98);
+}
+
+/* иконка */
+.pdf-icon {
+  font-size: 1.2em;
+  color: inherit;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+  .open-pdf-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+  }
+}
+
+
+/* === PDF Viewer Overlay === */
+.pdf-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.pdf-viewer-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.pdf-viewer-content {
+  width: 90%;
+  height: 90%;
+  max-width: 900px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.pdf-viewer-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+
+
+.experience-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px; /* небольшой отступ между текстами */
+  text-transform: none; /* снимаем верхний регистр */
+}
+
+.experience-inline {
+  font-size: 0.9em;
+  color: var(--orange-yellow-crayola);
+  font-weight: 500;
+  text-transform: none;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+  
+}
+
+
+
+
+/* === СТИЛЬ ДЛЯ КРАСИВОЙ WHATSAPP-КНОПКИ === */
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(37, 211, 102, 0.15); /* мягкий зелёный фон */
+  color: #25D366; /* фирменный цвет WhatsApp */
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 6px;
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  box-shadow: 0 0 8px rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-link ion-icon {
+  font-size: 18px;
+}
+
+.whatsapp-link:hover {
+  background: #25D366;
+  color: #fff; /* меняем цвет текста на белый */
+  box-shadow: 0 0 12px rgba(37, 211, 102, 0.6);
+  transform: translateY(-2px); /* лёгкий подскок при наведении */
+}
+
+.whatsapp-link:active {
+  transform: scale(0.98); /* эффект клика */
+}
+
+/* === СТИЛЬ ДЛЯ КРАСИВОЙ TELEGRAM-КНОПКИ === */
+.telegram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 136, 204, 0.15); /* мягкий синий фон */
+  color: #0088cc; /* фирменный цвет Telegram */
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 6px;
+  border: 1px solid rgba(0, 136, 204, 0.4);
+  box-shadow: 0 0 8px rgba(0, 136, 204, 0.2);
+}
+
+.telegram-link ion-icon {
+  font-size: 18px;
+}
+
+.telegram-link:hover {
+  background: #0088cc;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0, 136, 204, 0.6);
+  transform: translateY(-2px);
+}
+
+.telegram-link:active {
+  transform: scale(0.98);
 }
 

@@ -318,6 +318,9 @@
                     Выражаю искреннюю благодарность за Ваш активный вклад в развитие автономной организации образования «Назарбаев Интеллектуальные школы».
                     В этот знаменательный день желаю Вам и Вашей семье здоровья, счастья, благополучия, а также больших успехов и новых достижений в профессиональной деятельности.
                   </p>
+                  <button class="open-pdf-btn" data-pdf="./assets/docs/20250831_t_letter.pdf">
+                    <ion-icon name="document-text-outline" class="pdf-icon"></ion-icon><span>Открыть письмо (PDF)</span>
+                  </button>
                 </div>
 
               </div>
@@ -342,6 +345,9 @@
                     Он умеет системно подходить к решению задач, грамотно интерпретирует результаты и предлагает практические решения на основе анализа. 
                     Его профессионализм, ответственность и интерес к развитию заслуживают высокой оценки.
                   </p>
+                  <button class="open-pdf-btn" data-pdf="./assets/docs/20250831_t_letter2.pdf">
+                    <ion-icon name="document-text-outline" class="pdf-icon"></ion-icon><span>Открыть письмо (PDF)</span>
+                  </button>
                 </div>
 
               </div>
@@ -366,6 +372,9 @@
                     Особенно ценю его внимательность к деталям, умение работать в команде и стремление к качественному результату. 
                     Его подход к делу заслуживает высокой оценки.
                   </p>
+                  <button class="open-pdf-btn" data-pdf="./assets/docs/20250831_t_letter3.pdf">
+                    <ion-icon name="document-text-outline" class="pdf-icon"></ion-icon><span>Открыть письмо (PDF)</span>
+                  </button>
                 </div>
 
               </div>
@@ -1141,6 +1150,12 @@
     </div>
 
   </main>
+  
+  <div class="pdf-viewer-overlay" id="pdfViewerOverlay">
+      <div class="pdf-viewer-content">
+        <iframe src="" id="pdfFrame" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
 
 
 
@@ -1158,7 +1173,6 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  
 </body>
 
 </html>
