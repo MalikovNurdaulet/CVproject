@@ -578,6 +578,8 @@ main {
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
+  /* Ensure first/last card can fully snap into view */
+  scroll-padding-inline: 15px;
 }
 
 .testimonials-item {
@@ -1520,6 +1522,8 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin: 0 -30px;
     padding: 30px;
     padding-bottom: 35px;
+    /* Match horizontal padding so the last slide is reachable */
+    scroll-padding-inline: 30px;
   }
 
   .content-card {
