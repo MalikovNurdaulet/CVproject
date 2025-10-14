@@ -578,11 +578,15 @@ main {
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
+    scroll-padding-inline: 15px;
+
+
 }
 
 .testimonials-item {
   min-width: 100%;
   scroll-snap-align: center;
+  
 }
 
 .testimonials-avatar-box {
@@ -1520,6 +1524,9 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin: 0 -30px;
     padding: 30px;
     padding-bottom: 35px;
+        scroll-padding-inline: 30px;
+
+
   }
 
   .content-card {

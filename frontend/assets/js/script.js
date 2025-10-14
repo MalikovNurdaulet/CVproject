@@ -443,3 +443,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: false });
 });
 
+
+// === Testimonials: вертикальная прокрутка мышью -> горизонтальная ===
+document.addEventListener("DOMContentLoaded", () => {
+  const testimonialsList = document.querySelector(".testimonials-list");
+  if (!testimonialsList) return;
+
+  testimonialsList.addEventListener("wheel", (e) => {
+    // если пользователь крутит вертикально — скроллим по оси X
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault(); // блокируем стандартный вертикальный скролл
+      testimonialsList.scrollLeft += e.deltaY; // двигаем по горизонтали
+    }
+  }, { passive: false }); // важно! чтобы работал preventDefault()
+});
