@@ -732,7 +732,237 @@ main {
  * #clients 
  */
 
+ 
  /* === CLIENTS (Certificates) === */
+
+/* === Header row для блока клиентов === */
+.clients-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.clients-title {
+  margin: 0;
+}
+
+/* Кнопка "Список документов" */
+.cert-list-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--jet);
+  background: var(--bg-gradient-jet);
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  white-space: nowrap;
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+}
+
+.cert-list-toggle ion-icon {
+  font-size: 1.1rem;
+}
+
+.cert-list-toggle:hover,
+.cert-list-toggle:focus {
+  background: var(--bg-gradient-yellow-2);
+  color: var(--smoky-black);
+  transform: translateY(-1px);
+}
+
+/* Чтобы на маленьких экранах заголовок и кнопка складывались в колонку */
+@media (max-width: 600px) {
+  .clients-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cert-list-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* === Модальное окно со списком сертификатов === */
+.cert-section-title {
+  color: var(--orange-yellow-crayola);
+  margin: 18px 0 8px;
+  font-weight: var(--fw-600);
+  font-size: var(--fs-5);
+  border-left: 4px solid var(--orange-yellow-crayola);
+  padding-left: 8px;
+}
+
+.cert-list-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9998; /* чуть ниже pdf-viewer-overlay (9999) */
+}
+
+.cert-list-overlay.active {
+  display: flex;
+}
+
+.cert-list-modal {
+  background: var(--eerie-black-2);
+  border-radius: 18px;
+  border: 1px solid var(--jet);
+  box-shadow: var(--shadow-5);
+  max-width: 900px;
+  width: 92%;
+  max-height: 80vh;
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.cert-list-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cert-list-title ion-icon {
+  color: var(--orange-yellow-crayola);
+  font-size: 1.4rem;
+}
+
+.cert-list-subtitle {
+  margin-bottom: 14px;
+  color: var(--light-gray-70);
+  font-size: var(--fs-7);
+}
+
+/* Кнопка закрытия модалки */
+.cert-list-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--onyx);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-2);
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+}
+
+.cert-list-close ion-icon {
+  font-size: 1.2rem;
+}
+
+.cert-list-close:hover,
+.cert-list-close:focus {
+  background: var(--orange-yellow-crayola);
+  color: var(--smoky-black);
+}
+
+/* Сетка элементов списка */
+.cert-list-grid {
+  list-style: none;
+  margin: 0;
+  padding: 4px 2px 2px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+/* 2 колонки на средних экранах */
+@media (min-width: 600px) {
+  .cert-list-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 3 колонки на широких (но всё равно адаптивно для MacBook и десктопов) */
+@media (min-width: 1024px) {
+  .cert-list-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.cert-list-item {
+  width: 100%;
+}
+
+/* Кнопка документа внутри списка */
+.cert-list-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--jet);
+  background: var(--bg-gradient-jet);
+  box-shadow: var(--shadow-1);
+  transition: var(--transition-1);
+  text-align: left;
+
+}
+
+.cert-list-button:hover,
+.cert-list-button:focus {
+  border-color: var(--orange-yellow-crayola);
+  transform: translateY(-1px);
+}
+
+.cert-list-button .cert-text {
+  display: flex;
+  flex-direction: column;
+    align-items: flex-start; /* ← текст строго слева */
+
+  gap: 2px;
+  overflow: hidden;
+}
+
+.cert-list-button .cert-title {
+  color: var(--white-2);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cert-list-button .cert-meta {
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+}
+
+/* Иконка документа справа */
+.cert-list-button .pdf-icon {
+    margin-left: auto; /* ← прижимает значок вправо */
+  font-size: 1.4rem;
+  flex-shrink: 0;
+
+}
+
+/* Блокируем прокрутку фона, пока открыта модалка */
+body.no-scroll {
+  overflow: hidden;
+}
+
 .clients {
   margin-bottom: 15px;
   position: relative;
@@ -808,8 +1038,8 @@ main {
   justify-content: flex-start;
   align-items: center;
   gap: 40px;
-  animation: scroll-left 11.2s linear infinite; /* slower speed */
-}
+  animation: scroll-left 11.2s linear infinite; /* slower speed 
+}*/
 
 .clients-list:hover {
   animation-play-state: paused;
@@ -1222,6 +1452,8 @@ main {
   line-height: 1.6;
 }
 
+
+/* NEW BLOG */
 
 
 

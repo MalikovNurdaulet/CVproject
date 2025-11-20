@@ -475,12 +475,12 @@
 
         <!--
           - clients
-        -->
+
         <section class="clients">
           <h3 class="h3 clients-title">Дипломы & Сертификаты</h3>
           <div class="clients-scroll-wrapper">
           <ul class="clients-list has-scrollbar">
-<!-- 
+
             <li class="clients-item"><a href="#"><img src="./assets/images/CF1.png" alt="client logo"></a></li>
             <li class="clients-item"><a href="#"><img src="./assets/images/CF2.png" alt="client logo"></a></li>
             <li class="clients-item"><a href="#"><img src="./assets/images/CF3.png" alt="client logo"></a></li>
@@ -489,7 +489,7 @@
             <li class="clients-item"><a href="#"><img src="./assets/images/CF3.png" alt="client logo"></a></li>
 -->
             <!-- <li class="clients-item"><img src="./assets/images/CF1.png" alt="client logo"></li>
-            <li class="clients-item"><img src="./assets/docs/20250502_cerf_v2.pdf" alt="client logo"></li> -->
+            <li class="clients-item"><img src="./assets/docs/20250502_cerf_v2.pdf" alt="client logo"></li> 
             <li class="clients-item">
               <button 
                 class="open-pdf-btn client-pdf-thumb vertical" 
@@ -526,7 +526,7 @@
             
 
 
-            <!-- Горизонтальный диплом -->
+            Горизонтальный диплом 
             <li class="clients-item">
               <button 
                 class="open-pdf-btn client-pdf-thumb horizontal" 
@@ -537,7 +537,82 @@
             </li>
           </ul>
           </div>
+        </section>-->
+        <!--
+          - clients
+        -->
+        <section class="clients" id="certificatesSection">
+          <div class="clients-header-row">
+            <h3 class="h3 clients-title">Дипломы & Сертификаты</h3>
+
+            <button class="cert-list-toggle" id="openCertificatesList" type="button">
+              <ion-icon name="list-outline"></ion-icon>
+              <span>Список</span>
+            </button>
+          </div>
+
+          <div class="clients-scroll-wrapper">
+            <ul class="clients-list has-scrollbar">
+
+              <li class="clients-item">
+                <button 
+                  class="open-pdf-btn client-pdf-thumb vertical" 
+                  data-pdf="./assets/docs/20250502_cerf_v2.pdf" 
+                  data-type="certificate"
+                  data-title="Cito International | CitoLab"
+                  data-label="R · 2025">
+                  <img src="./assets/images/20250502_cerf.png" alt="Certificate preview">
+                </button>
+              </li>
+
+              <li class="clients-item">
+                <button 
+                  class="open-pdf-btn client-pdf-thumb horizontal" 
+                  data-pdf="./assets/docs/Hackerrank_sql_basic_cerf.pdf" 
+                  data-type="certificate"
+                  data-title="HackerRank SQL · Basic"
+                  data-label="SQL · 2025">
+                  <img src="./assets/images/20251017_cerf.png" alt="Certificate preview">
+                </button>
+              </li>
+
+              <li class="clients-item">
+                <button 
+                  class="open-pdf-btn client-pdf-thumb horizontal" 
+                  data-pdf="./assets/docs/Hackerrank_sql_intermediate_cerf.pdf" 
+                  data-type="certificate"
+                  data-title="HackerRank SQL · Intermediate"
+                  data-label="SQL · 2025">
+                  <img src="./assets/images/20251024_cerf (2).png" alt="Certificate preview">
+                </button>
+              </li>
+
+              <li class="clients-item">
+                <button 
+                  class="open-pdf-btn client-pdf-thumb horizontal" 
+                  data-pdf="./assets/docs/Hackerrank_python_basic_cerf.pdf" 
+                  data-type="certificate"
+                  data-title="HackerRank Python · Basic"
+                  data-label="Python · 2025">
+                  <img src="./assets/images/20251024_cerf.png" alt="Certificate preview">
+                </button>
+              </li>
+
+              <!-- Горизонтальный диплом -->
+              <li class="clients-item">
+                <button 
+                  class="open-pdf-btn client-pdf-thumb horizontal" 
+                  data-pdf="./assets/docs/20230123_diploma.pdf" 
+                  data-type="diploma"
+                  data-title="Диплом бакалавра"
+                  data-label="КБТУ · 2023">
+                  <img src="./assets/images/20230123_dipl.png" alt="Diploma preview">
+                </button>
+              </li>
+            </ul>
+          </div>
         </section>
+
       </article>
 
 
@@ -976,7 +1051,7 @@
         - #BLOG
       -->
 
-      <!-- <article class="blog" data-page="blog">
+      <article class="blog" data-page="blog">
 
         <header>
           <h2 class="h2 article-title">Blog</h2>
@@ -987,7 +1062,7 @@
           <ul class="blog-posts-list">
 
             <li class="blog-post-item">
-              <a href="#">
+              <a href="blog-data-analytics.html" target="_blank">
 
                 <figure class="blog-banner-box">
                   <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
@@ -1155,10 +1230,8 @@
             </li>
 
           </ul>
-
         </section>
-
-      </article> -->
+      </article>
 
 
 
@@ -1209,7 +1282,39 @@
     </div>
 
   </main>
-  
+    <!-- Модальное окно со списком дипломов и сертификатов -->
+<!-- === Modal: Список документов (дипломы / сертификаты / курсы) === -->
+<div class="cert-list-overlay" id="certListOverlay">
+  <div class="cert-list-modal">
+
+    <div class="cert-list-header">
+      <h3 class="h3 cert-list-title">
+        <ion-icon name="ribbon-outline"></ion-icon>
+        <span>Документы</span>
+      </h3>
+
+      <button class="cert-list-close" type="button">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+
+    <p class="cert-list-subtitle">
+      Нажмите на документ, чтобы открыть PDF
+    </p>
+
+    <h4 class="h4 cert-section-title">Дипломы</h4>
+    <ul class="cert-list-grid" data-cert-list-diploma></ul>
+
+    <h4 class="h4 cert-section-title">Сертификаты</h4>
+    <ul class="cert-list-grid" data-cert-list-certificate></ul>
+
+    <h4 class="h4 cert-section-title">Курсы и экзамены</h4>
+    <ul class="cert-list-grid" data-cert-list-course></ul>
+
+  </div>
+</div>
+
+
   <div class="pdf-viewer-overlay" id="pdfViewerOverlay">
       <div class="pdf-viewer-content">
         <iframe src="" id="pdfFrame" frameborder="0" allowfullscreen></iframe>

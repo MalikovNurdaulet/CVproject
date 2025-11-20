@@ -457,3 +457,169 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { passive: false }); // важно! чтобы работал preventDefault()
 });
+
+// === Список дипломов и сертификатов — фикс: берём только оригинальные 5 элементов ===
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openCertificatesList");
+  const overlay = document.getElementById("certListOverlay");
+  if (!openBtn || !overlay) return;
+
+  const modal = overlay.querySelector(".cert-list-modal");
+  const closeBtn = overlay.querySelector(".cert-list-close");
+  const listContainer = overlay.querySelector("[data-cert-list]");
+  if (!modal || !closeBtn || !listContainer) return;
+
+  // 🔥 Берём только ПЕРВЫЙ набор элементов (до дублирования)
+  const realList = document.querySelector("#certificatesSection .clients-list");
+  if (!realList) return;
+
+  // Берём только уникальные кнопки по PDF
+  const allButtons = realList.querySelectorAll(".open-pdf-btn");
+  const seen = new Set();
+  const uniqueButtons = [];
+
+  allButtons.forEach(btn => {
+    const pdf = btn.getAttribute("data-pdf");
+    if (!seen.has(pdf)) {
+      seen.add(pdf);
+      uniqueButtons.push(btn);
+    }
+  });
+
+  // Очищаем список
+  listContainer.innerHTML = "";
+
+  // Создаём элементы списка
+  uniqueButtons.forEach((btn, index) => {
+    const li = document.createElement("li");
+    li.className = "cert-list-item";
+
+    const clone = btn.cloneNode(true);
+    clone.classList.remove("client-pdf-thumb", "vertical", "horizontal");
+    clone.classList.add("cert-list-button");
+
+    const title =
+      btn.getAttribute("data-title") || `Документ ${index + 1}`;
+    const meta =
+      btn.getAttribute("data-label") ||
+      btn.getAttribute("data-type") ||
+      "";
+
+    clone.innerHTML = `
+      <div class="cert-text">
+        <span class="cert-title">${title}</span>
+        ${meta ? `<span class="cert-meta">${meta}</span>` : ""}
+      </div>
+      <ion-icon name="document-text-outline" class="pdf-icon"></ion-icon>
+    `;
+
+    li.appendChild(clone);
+    listContainer.appendChild(li);
+  });
+
+  const openModal = () => {
+    overlay.classList.add("active");
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeModal = () => {
+    overlay.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+  };
+
+  openBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+});
+
+
+// === Список дипломов / сертификатов / курсов (в модалке) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openCertificatesList");
+  const overlay = document.getElementById("certListOverlay");
+  if (!openBtn || !overlay) return;
+
+  const closeBtn = overlay.querySelector(".cert-list-close");
+
+  const diplomaList = overlay.querySelector("[data-cert-list-diploma]");
+  const certificateList = overlay.querySelector("[data-cert-list-certificate]");
+  const courseList = overlay.querySelector("[data-cert-list-course]");
+
+  const realList = document.querySelector("#certificatesSection .clients-list");
+  if (!realList) return;
+
+  // Уникальные PDF
+  const allButtons = realList.querySelectorAll(".open-pdf-btn");
+  const seen = new Set();
+  const uniqueButtons = [];
+
+  allButtons.forEach(btn => {
+    const pdf = btn.getAttribute("data-pdf");
+    if (!seen.has(pdf)) {
+      seen.add(pdf);
+      uniqueButtons.push(btn);
+    }
+  });
+
+  // Очистка
+  diplomaList.innerHTML = "";
+  certificateList.innerHTML = "";
+  courseList.innerHTML = "";
+
+  // Создание элементов
+  uniqueButtons.forEach(btn => {
+    const type = btn.getAttribute("data-type") || "certificate";
+    const title = btn.getAttribute("data-title") || "Документ";
+    const meta = btn.getAttribute("data-label") || "";
+
+    const li = document.createElement("li");
+    li.className = "cert-list-item";
+
+    const clone = btn.cloneNode(true);
+    clone.classList.remove("client-pdf-thumb", "vertical", "horizontal");
+    clone.classList.add("cert-list-button");
+
+    clone.innerHTML = `
+      <div class="cert-text">
+        <span class="cert-title">${title}</span>
+        ${meta ? `<span class="cert-meta">${meta}</span>` : ""}
+      </div>
+      <ion-icon name="document-text-outline" class="pdf-icon"></ion-icon>
+    `;
+
+    li.appendChild(clone);
+
+    if (type === "diploma") diplomaList.appendChild(li);
+    else if (type === "course") courseList.appendChild(li);
+    else certificateList.appendChild(li);
+  });
+
+  // Открытие / закрытие
+  const openModal = () => {
+    overlay.classList.add("active");
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeModal = () => {
+    overlay.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+  };
+
+  openBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+});
