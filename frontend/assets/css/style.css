@@ -506,6 +506,12 @@ main {
   line-height: 1.6;
 }
 
+.about-text b,
+.about-text strong {
+  font-weight: var(--fw-600);              /* реально жирный */
+  color: var(--orange-yellow-crayola);     /* чтобы был акцент, как в заголовках */
+}
+
 .about-text p { margin-bottom: 15px; }
 
 
