@@ -445,17 +445,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // === Testimonials: вертикальная прокрутка мышью -> горизонтальная ===
+// === Testimonials: вертикальная прокрутка мышью -> горизонтальная (FIX) ===
 document.addEventListener("DOMContentLoaded", () => {
   const testimonialsList = document.querySelector(".testimonials-list");
   if (!testimonialsList) return;
 
+  let isScrolling = false;
+
   testimonialsList.addEventListener("wheel", (e) => {
-    // если пользователь крутит вертикально — скроллим по оси X
+    // Если пользователь крутит вертикально — прокручиваем по оси X
     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault(); // блокируем стандартный вертикальный скролл
-      testimonialsList.scrollLeft += e.deltaY; // двигаем по горизонтали
+      e.preventDefault();
+      
+      // ✅ Плавная прокрутка
+      const scrollAmount = e.deltaY;
+      testimonialsList.scrollBy({
+        left: scrollAmount,
+        behavior: 'auto' // instant scroll (без лагов)
+      });
     }
-  }, { passive: false }); // важно! чтобы работал preventDefault()
+  }, { passive: false });
+
+  // ✅ Поддержка тачпада (горизонтальный свайп)
+  testimonialsList.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaX) > 0) {
+      // Пользователь свайпает горизонтально на тачпаде
+      // Браузер сам обработает
+      return;
+    }
+  }, { passive: true });
 });
 
 // === Список дипломов и сертификатов — фикс: берём только оригинальные 5 элементов ===
