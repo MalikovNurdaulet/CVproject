@@ -594,7 +594,7 @@
                 <button 
                   class="open-pdf-btn client-pdf-thumb horizontal" 
                   data-pdf="./assets/docs/Hackerrank_sql_basic_cerf.pdf" 
-                  data-type="certificate"
+                  data-type="course"
                   data-title="HackerRank SQL · Basic"
                   data-label="SQL · 2025">
                   <img src="./assets/images/20251017_cerf.png" alt="Certificate preview">
@@ -605,10 +605,20 @@
                 <button 
                   class="open-pdf-btn client-pdf-thumb horizontal" 
                   data-pdf="./assets/docs/Hackerrank_sql_intermediate_cerf.pdf" 
-                  data-type="certificate"
+                  data-type="course"
                   data-title="HackerRank SQL · Intermediate"
                   data-label="SQL · 2025">
                   <img src="./assets/images/20251024_cerf (2).png" alt="Certificate preview">
+                </button>
+              </li>
+              <li class="clients-item">
+                <button 
+                  class="open-pdf-btn client-pdf-thumb horizontal" 
+                  data-pdf="./assets/docs/Hackerrank_sql_advanced_cerf.pdf" 
+                  data-type="course"
+                  data-title="HackerRank SQL · Advanced"
+                  data-label="SQL · 2025">
+                  <img src="./assets/images/20251125_cerf.jpg" alt="Certificate preview">
                 </button>
               </li>
 
@@ -616,7 +626,7 @@
                 <button 
                   class="open-pdf-btn client-pdf-thumb horizontal" 
                   data-pdf="./assets/docs/Hackerrank_python_basic_cerf.pdf" 
-                  data-type="certificate"
+                  data-type="course"
                   data-title="HackerRank Python · Basic"
                   data-label="Python · 2025">
                   <img src="./assets/images/20251024_cerf.png" alt="Certificate preview">
@@ -992,163 +1002,273 @@
     </div>
   </div>
 </section> -->
-<section class="skills-section">
-  <h2 class="skills-title">My Skills</h2>
+<section class="skill">
+  <h3 class="h3 skills-title">My skills</h3>
 
-  <div class="skills-grid">
+  <div class="skills-slider-wrapper">
+    <div class="skills-slider" id="skillsSlider">
 
-    <div class="skills-group">
-      <h3 style="color: var(--orange-yellow-crayola)">Языки Программирования</h3>
+      <!-- SLIDE 1 -->
+      <div class="skills-slide">
+        <h4 class="skills-group-title">Языки программирования</h4>
+        <ul class="skills-list content-card">
 
-      <div class="skill">
-        <div class="skill-header"><span><b>Python — </b> <em>(Pandas, Numpy, SQLAlchemy, Psycopg2, Openpyxl, Scipy, Statsmodels)</em></span><span>95%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:95%"></div></div>
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Python — </b><em>(Pandas, Numpy, SQLAlchemy, Psycopg2, Openpyxl, Scipy, Statsmodels)</em></h5>
+              <data value="95">95%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="95"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>PostgreSQL — </b><em>(JOIN, CTE, View, Index, Transaction, ERD, OLAP/OLTP)</em></h5>
+              <data value="90">90%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="90"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>R — </b><em>(DexterMML, Dplyr, Tidyr, ggplot2, tidymodels, xgboost)</em></h5>
+              <data value="85">85%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="85"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>HTML / CSS / JavaScript — </b><em>(Tags, Styles, DOM)</em></h5>
+              <data value="70">70%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="70"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>C++ — </b><em>(std, vector, pointers, loop)</em></h5>
+              <data value="40">40%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="40"></div>
+            </div>
+          </li>
+
+        </ul>
       </div>
 
-      <div class="skill">
-        <div class="skill-header"><span><b>PostgreSQL — </b><em>(JOIN, CTE, View, Index, Transaction, ERD, OLAP/OLTP)</em></span><span>90%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:90%"></div></div>
+      <!-- SLIDE 2 -->
+      <div class="skills-slide">
+        <h4 class="skills-group-title">Office & BI Tools</h4>
+        <ul class="skills-list content-card">
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Excel — </b><em>(Formulas, Pivot, PowerQuery, VBA)</em></h5>
+              <data value="100">100%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="100"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Power BI — </b><em>(DAX, визуализация)</em></h5>
+              <data value="70">70%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="70"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Word — </b><em>(оформление документов)</em></h5>
+              <data value="100">100%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="100"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>PowerPoint — </b><em>(презентации)</em></h5>
+              <data value="100">100%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="100"></div>
+            </div>
+          </li>
+
+        </ul>
       </div>
 
-      <div class="skill">
-        <div class="skill-header"><span><b>R — </b> <em>(DexterMML, Dplyr, Tidyr, ggplot2, tidymodels, xgboost)</em></span><span>85%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:80%"></div></div>
+      <!-- SLIDE 3 -->
+      <div class="skills-slide">
+        <h4 class="skills-group-title">Technologies & Frameworks</h4>
+        <ul class="skills-list content-card">
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>FastAPI — </b><em>(REST API, Auth)</em></h5>
+              <data value="75">75%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="75"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>React — </b><em>(components, props)</em></h5>
+              <data value="55">55%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="55"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Pandas / NumPy — </b><em>(EDA, агрегирование)</em></h5>
+              <data value="85">85%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="85"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Scikit-Learn — </b><em>(модели, метрики)</em></h5>
+              <data value="70">70%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="70"></div>
+            </div>
+          </li>
+
+        </ul>
       </div>
 
-      <div class="skill">
-        <div class="skill-header"><span><b>HTML / CSS / JavaScript — </b> <em>(Tags, Styles, DOM, базовая логика)</em></span><span>70%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:70%"></div></div>
+      <!-- SLIDE 4 -->
+      <div class="skills-slide">
+        <h4 class="skills-group-title">Infrastructure & DevOps</h4>
+        <ul class="skills-list content-card">
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Docker — </b><em>(контейнеры)</em></h5>
+              <data value="70">70%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="70"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Kubernetes — </b><em>(Pods, Services)</em></h5>
+              <data value="40">40%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="40"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Nginx — </b><em>(reverse proxy)</em></h5>
+              <data value="60">60%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="60"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>AWS / Cloud</b></h5>
+              <data value="40">40%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="40"></div>
+            </div>
+          </li>
+
+        </ul>
       </div>
 
-      <div class="skill">
-        <div class="skill-header"><span><b>C++ — </b><em>(Std, Vector, Pointers, Loop)</em></span><span>40%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:40%"></div></div>
+      <!-- SLIDE 5 -->
+      <div class="skills-slide">
+        <h4 class="skills-group-title">Automation & Integration</h4>
+        <ul class="skills-list content-card">
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>n8n — </b><em>(workflows, интеграции)</em></h5>
+              <data value="70">70%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="70"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>SendPulse — </b><em>(боты, автоматизация)</em></h5>
+              <data value="65">65%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="65"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>Telegram Bots — </b><em>(API, логика диалогов)</em></h5>
+              <data value="75">75%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="75"></div>
+            </div>
+          </li>
+
+          <li class="skills-item">
+            <div class="title-wrapper">
+              <h5 class="h5"><b>CI/CD (GitHub, GitLab) — </b><em>(pipelines)</em></h5>
+              <data value="65">65%</data>
+            </div>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" data-fill="65"></div>
+            </div>
+          </li>
+
+        </ul>
       </div>
+
     </div>
-    <!-- 1. LANGUAGES -->
-    <div class="skills-group">
-      <h3 style="color: var(--orange-yellow-crayola)">Office & BI Tools</h3>
 
-      <div class="skill">
-        <div class="skill-header">
-          <span><b>Excel — </b><em>(Vlookup, Xlookup, Index, Countif, Pivot, PowerQuery, VBA)</em></span>
-          <span>100%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-bar-inner" style="width:100%"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span><b>Power BI — </b><em>(дашборды, визуализация, DAX базово)</em></span>
-          <span>70%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-bar-inner" style="width:70%"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span><b>Word — </b><em>(оформление документов)</em></span>
-          <span>100%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-bar-inner" style="width:100%"></div>
-        </div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span><b>PowerPoint — </b><em>(презентации, визуальный стиль)</em></span>
-          <span>100%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-bar-inner" style="width:100%"></div>
-        </div>
-      </div>
-
+    <div class="skills-slider-controls">
+      <button class="skills-slider-btn" id="prevBtn">&#10094;</button>
+      <button class="skills-slider-btn" id="nextBtn">&#10095;</button>
     </div>
 
-    <!-- 2. TECHNOLOGIES -->
-    <div class="skills-group">
-      <h3 style="color: var(--orange-yellow-crayola)">Technologies & Frameworks</h3>
-
-      <div class="skill">
-        <div class="skill-header"><span>FastAPI</span><span>75%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:75%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>React</span><span>55%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:55%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>Pandas / NumPy</span><span>85%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:85%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>Scikit-Learn / ML</span><span>70%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:70%"></div></div>
-      </div>
-    </div>
-
-    <!-- 3. INFRASTRUCTURE -->
-    <div class="skills-group">
-      <h3 style="color: var(--orange-yellow-crayola)">Infrastructure & DevOps</h3>
-
-      <div class="skill">
-        <div class="skill-header"><span>Docker</span><span>70%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:70%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>Kubernetes</span><span>40%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:40%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>Nginx</span><span>60%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:60%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>AWS / Cloud</span><span>40%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:40%"></div></div>
-      </div>
-    </div>
-
-    <!-- 4. AUTOMATION -->
-    <div class="skills-group">
-      <h3 style="color: var(--orange-yellow-crayola)">Automation & Integration</h3>
-
-      <div class="skill">
-        <div class="skill-header"><span>n8n</span><span>70%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:70%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>SendPulse</span><span>65%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:65%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>Telegram Bots</span><span>75%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:75%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header"><span>CI/CD (GitHub, Gitlab)</span><span>65%</span></div>
-        <div class="skill-bar"><div class="skill-bar-inner" style="width:65%"></div></div>
-      </div>
-    </div>
+    <div class="skills-dots" id="skillsDots"></div>
 
   </div>
 </section>
-
 
       </article>
 
@@ -1669,10 +1789,6 @@
         <iframe src="" id="pdfFrame" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-
-
-
-
 
 
   <!--

@@ -623,3 +623,153 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeModal();
   });
 });
+
+
+// My skills block
+// My skills block
+(function() {
+
+  const slider = document.getElementById("skillsSlider");
+  let slides = document.querySelectorAll(".skills-slide");
+  const dotsContainer = document.getElementById("skillsDots");
+
+  let index = 1;  // начинаем на 1 (после клона)
+  const speed = 0.45;
+
+  /** CLONE FIRST & LAST SLIDES */
+  const firstClone = slides[0].cloneNode(true);
+  const lastClone = slides[slides.length - 1].cloneNode(true);
+
+  firstClone.id = "first-clone";
+  lastClone.id = "last-clone";
+
+  slider.appendChild(firstClone);
+  slider.insertBefore(lastClone, slider.firstChild);
+
+  slides = document.querySelectorAll(".skills-slide");
+
+  let total = slides.length;
+
+  slider.style.transform = `translateX(-${index * 100}%)`;
+
+  /** CREATE DOTS (only for real slides, not clones) */
+  const realSlidesCount = total - 2;
+  for (let i = 0; i < realSlidesCount; i++) {
+    const dot = document.createElement("div");
+    dot.className = "skills-dot";
+    dot.dataset.index = i + 1;
+    dotsContainer.appendChild(dot);
+  }
+
+  const dots = document.querySelectorAll(".skills-dot");
+
+  /** UPDATE DOTS + BARS */
+  function updateUI() {
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[(index - 1 + realSlidesCount) % realSlidesCount].classList.add("active");
+    updateBars();
+  }
+
+  /** APPLY WIDTH ONLY (CSS handles the color) */
+  function updateBars() {
+    const fills = slides[index].querySelectorAll(".skill-progress-fill");
+
+    fills.forEach(fill => {
+      const value = Number(fill.dataset.fill);
+      fill.style.width = value + "%";
+    });
+  }
+
+  /** SMOOTH MOVE */
+  function moveToSlide(i) {
+    slider.style.transition = `${speed}s ease`;
+    slider.style.transform = `translateX(-${i * 100}%)`;
+  }
+
+  /** CHECK FOR CLONES (для бесшовного перехода) */
+  slider.addEventListener("transitionend", () => {
+    if (slides[index].id === "first-clone") {
+      slider.style.transition = "none";
+      index = 1;
+      slider.style.transform = `translateX(-100%)`;
+    }
+
+    if (slides[index].id === "last-clone") {
+      slider.style.transition = "none";
+      index = total - 2;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+  });
+
+  /** BUTTONS */
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    if (index >= total - 1) return;
+    index++;
+    moveToSlide(index);
+    updateUI();
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    if (index <= 0) return;
+    index--;
+    moveToSlide(index);
+    updateUI();
+  });
+
+  /** DOTS CLICK */
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      const target = Number(dot.dataset.index);
+      index = target;
+      moveToSlide(index);
+      updateUI();
+    });
+  });
+
+  /** ✅ SWIPE TOUCH - Плавный как у testimonials */
+  let startX = 0;
+  let isDragging = false;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+
+  slider.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    slider.style.transition = "none"; // Убираем анимацию при драге
+    prevTranslate = -index * slider.offsetWidth;
+  }, { passive: true });
+
+  slider.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+    currentTranslate = prevTranslate + diff;
+    
+    // Применяем перемещение в реальном времени
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+  }, { passive: true });
+
+  slider.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    const movedBy = currentTranslate - prevTranslate;
+    
+    // Если свайп больше 50px - переключаем слайд
+    if (movedBy < -50 && index < total - 1) {
+      index++;
+    } else if (movedBy > 50 && index > 0) {
+      index--;
+    }
+    
+    // Возвращаем плавную анимацию и переходим к нужному слайду
+    moveToSlide(index);
+    updateUI();
+  }, { passive: true });
+
+  /** INITIAL UI UPDATE */
+  updateUI();
+
+})();
+

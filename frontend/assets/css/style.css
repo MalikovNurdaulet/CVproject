@@ -1,89 +1,156 @@
 /* :root {
-  --skill-gradient: linear-gradient(
-    90deg,
-    #d67a6b,
-    #e9d783,
-    #8bc7a2
-  );
-} */
+  /* --skill-gradient: linear-gradient(90deg, #78463f, #8f8140, #3e6b55); */
+  /* --skill-gradient: linear-gradient(90deg,#d67a6b,#e9d783,#8bc7a2); */
+  /* --skill-gradient: linear-gradient(90deg,#ad9d99, #a3934a,#8bc7a2); */
+
+/* :root {
+  /* --skill-gradient: linear-gradient(90deg, #78463f, #8f8140, #3e6b55); */
+  /* --skill-gradient: linear-gradient(90deg,#d67a6b,#e9d783,#8bc7a2); */
+  /* --skill-gradient: linear-gradient(90deg,#ad9d99, #a3934a,#8bc7a2); */
+
+
 
 :root {
-  --skill-gradient: linear-gradient(
-    90deg,
-    #ad9d99,   /* тёмный красный */
-    #a3934a,   /* тёплый тёмно-жёлтый */
-    #8bc7a2    /* тёмный зелёный */
-  );
+  --skill-gradient-red: #d67a6b;
+  --skill-gradient-yellow: #e9d783;
+  --skill-gradient-green: #8bc7a2;
 }
 
+/* 3cb371 */
 
-.skills-section {
-  background: #181818;
-  border-radius: 16px;
-  padding: 24px 28px;
+.skill { margin-bottom: 16px; }
+
+.skills-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-.skills-title {
-  margin: 0 0 18px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
+.skills-slider {
+  display: flex;
+  transition: transform 0.45s ease;
 }
 
-/* mobile: 1 col, desktop: 2 cols */
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+.skills-slide {
+  min-width: 100%;
 }
 
-@media (min-width: 768px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.skills-group-title {
+  color: var(--orange-yellow-crayola, #f7c257);
+  margin: 0 0 14px;
+  font-size: 20px;
 }
 
-/* group card */
-.skills-group {
-  background: #202020;
-  border-radius: 14px;
-  padding: 14px 16px;
+.skills-list {
+  padding: 20px;
 }
 
-.skills-group h3 {
-  margin: 4px 0 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #f1f1f1;
+.skills-item:not(:last-child) {
+  margin-bottom: 16px;
 }
 
-.skill {
-  margin-bottom: 10px;
-}
-
-.skill-header {
+/* header ТЕПЕРЬ ТОЛЬКО ДЛЯ СКИЛЛОВ */
+.skills-list .title-wrapper {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
-  color: #f5f5f5;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  gap: 6px;
 }
 
-.skill-bar {
+.skills-list .title-wrapper h5 {
+  color: #eee;
+  font-weight: 500;
+  max-width: 75%;
+}
+
+.skills-list .title-wrapper data {
+  color: #bdbdbd;
+  font-size: 14px;
+}
+
+/* progress bar */
+.skill-progress-bg {
   width: 100%;
-  height: 6px;
-  background: #333333;
-  border-radius: 999px;
+  height: 8px;
+  background: #333;
+  border-radius: 10px;
   overflow: hidden;
 }
 
-.skill-bar-inner {
+.skill-progress-fill {
   height: 100%;
-  width: 0;
   border-radius: inherit;
-  background-image: var(--skill-gradient);
-  transition: width 0.6s ease;
+  
+  /* Магия градиента */
+  background: linear-gradient(
+    90deg, 
+    var(--skill-gradient-red) 0%, 
+    var(--skill-gradient-yellow) 50%, 
+    var(--skill-gradient-green) 100%
+  );
+  
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.5s ease; /* Плавная анимация роста полоски */
 }
+
+/* КНОПКИ */
+.skills-slider-controls {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+}
+
+.skills-slider-btn {
+  background: #262626;
+  border: 1px solid #444;
+  color: #f0f0f0;
+  padding: 10px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  transition: 0.3s;
+}
+
+.skills-slider-btn:hover {
+  background: #333;
+  color: var(--orange-yellow-crayola);
+}
+
+/* ТОЧКИ */
+.skills-dots {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.skills-dot {
+  width: 11px;
+  height: 11px;
+  background: #555;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.skills-dot.active {
+  background: var(--orange-yellow-crayola, #f7c257);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .skills-list {
+    padding: 14px;
+  }
+}
+
+
+
+
+
+
 
 /*-----------------------------------*\
   #style.css
@@ -1292,11 +1359,11 @@ body.no-scroll {
   border-radius: 10px;
 }
 
-.skill-progress-fill {
+/* .skill-progress-fill {
   background: var(--text-gradient-yellow);
   height: 100%;
   border-radius: inherit;
-}
+} */
 
 
 
