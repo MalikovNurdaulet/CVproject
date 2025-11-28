@@ -645,6 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // My skills block
 // My skills block
+// My skills block
 (function() {
 
   const slider = document.getElementById("skillsSlider");
@@ -681,20 +682,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dots = document.querySelectorAll(".skills-dot");
 
-  /** UPDATE DOTS + BARS */
+  /** ✅ Конвертация CEFR в ширину (ПЕРЕД updateBars!) */
+  function getLevelWidth(level) {
+    const levels = {
+      'A1': 16.66,  // 1/6 = ~17%
+      'A2': 33.33,  // 2/6 = ~33%
+      'B1': 50,     // 3/6 = 50%
+      'B2': 66.66,  // 4/6 = ~67%
+      'C1': 83.33,  // 5/6 = ~83%
+      'C2': 100     // 6/6 = 100%
+    };
+    return levels[level] || 0;
+  }
+
+  /** ✅ UPDATE DOTS + BARS */
   function updateUI() {
     dots.forEach(dot => dot.classList.remove("active"));
     dots[(index - 1 + realSlidesCount) % realSlidesCount].classList.add("active");
     updateBars();
   }
 
-  /** APPLY WIDTH ONLY (CSS handles the color) */
+  /** ✅ APPLY WIDTH (обычные навыки по %) + LANGUAGES (по CEFR) */
   function updateBars() {
-    const fills = slides[index].querySelectorAll(".skill-progress-fill");
-
-    fills.forEach(fill => {
+    const currentSlide = slides[index];
+    
+    // 1️⃣ Обычные навыки (по процентам)
+    const skillFills = currentSlide.querySelectorAll(".skill-progress-fill:not(.language-fill)");
+    skillFills.forEach(fill => {
       const value = Number(fill.dataset.fill);
       fill.style.width = value + "%";
+    });
+
+    // 2️⃣ Языки (по уровню CEFR)
+    const langItems = currentSlide.querySelectorAll(".skills-item");
+    langItems.forEach(item => {
+      const langFill = item.querySelector(".language-fill");
+      if (!langFill) return;
+
+      const level = langFill.dataset.level;
+      const width = getLevelWidth(level);
+      langFill.style.width = width + "%";
+
+      // ✅ Подсвечиваем достигнутый уровень в метках
+      const labels = item.querySelectorAll(".cefr-labels span");
+      const levelOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+      const maxIndex = levelOrder.indexOf(level);
+
+      labels.forEach((label, idx) => {
+        if (idx <= maxIndex) {
+          label.classList.add("active");
+        } else {
+          label.classList.remove("active");
+        }
+      });
     });
   }
 
@@ -706,18 +746,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** CHECK FOR CLONES (для бесшовного перехода) */
   slider.addEventListener("transitionend", () => {
-    if (slides[index].id === "first-clone") {
-      slider.style.transition = "none";
-      index = 1;
-      slider.style.transform = `translateX(-100%)`;
-    }
+  let needUpdate = false;
 
-    if (slides[index].id === "last-clone") {
-      slider.style.transition = "none";
-      index = total - 2;
-      slider.style.transform = `translateX(-${index * 100}%)`;
-    }
-  });
+  if (slides[index].id === "first-clone") {
+    slider.style.transition = "none";
+    index = 1;
+    slider.style.transform = `translateX(-100%)`;
+    needUpdate = true;
+  }
+
+  if (slides[index].id === "last-clone") {
+    slider.style.transition = "none";
+    index = total - 2;
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    needUpdate = true;
+  }
+
+  if (needUpdate) {
+    // сразу пересчитаем точки и ширину полос
+    updateUI();
+  }
+});
+
 
   /** BUTTONS */
   document.getElementById("nextBtn").addEventListener("click", () => {
@@ -744,7 +794,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /** ✅ SWIPE TOUCH - Плавный как у testimonials */
+  /** SWIPE TOUCH - Плавный как у testimonials */
   let startX = 0;
   let isDragging = false;
   let currentTranslate = 0;
@@ -753,7 +803,7 @@ document.addEventListener("DOMContentLoaded", () => {
   slider.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
     isDragging = true;
-    slider.style.transition = "none"; // Убираем анимацию при драге
+    slider.style.transition = "none";
     prevTranslate = -index * slider.offsetWidth;
   }, { passive: true });
 
@@ -764,7 +814,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const diff = currentX - startX;
     currentTranslate = prevTranslate + diff;
     
-    // Применяем перемещение в реальном времени
     slider.style.transform = `translateX(${currentTranslate}px)`;
   }, { passive: true });
 
@@ -774,14 +823,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const movedBy = currentTranslate - prevTranslate;
     
-    // Если свайп больше 50px - переключаем слайд
     if (movedBy < -50 && index < total - 1) {
       index++;
     } else if (movedBy > 50 && index > 0) {
       index--;
     }
     
-    // Возвращаем плавную анимацию и переходим к нужному слайду
     moveToSlide(index);
     updateUI();
   }, { passive: true });
