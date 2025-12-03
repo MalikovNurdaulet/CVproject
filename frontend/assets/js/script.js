@@ -184,6 +184,27 @@ navigationLinks.forEach((link) => {
   });
 });
 
+// quick links (chips) to jump to specific pages
+document.querySelectorAll("[data-go-page]").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = link.dataset.goPage;
+    if (!target) return;
+
+    pages.forEach((page) => {
+      page.classList.toggle("active", page.dataset.page === target);
+    });
+
+    navigationLinks.forEach((nav) => {
+      nav.classList.toggle("active", nav.dataset.page === target);
+    });
+
+    window.scrollTo(0, 0);
+  });
+});
+
+
+
 
 // =============================
 // Опыт работы — расчёт стажа

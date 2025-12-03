@@ -739,6 +739,35 @@ main {
 
 .about-text p { margin-bottom: 15px; }
 
+.about-lead { margin-bottom: 6px; }
+
+.about-list {
+  margin: 0 0 15px 18px;
+  padding-left: 18px;
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  line-height: 1.6;
+}
+
+.about-list li:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+.about-chip {
+  display: inline-block;
+  background: rgba(255, 196, 0, 0.15);
+  color: var(--orange-yellow-crayola);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: var(--fw-600);
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+}
+
+.about-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
 
 
 /**
