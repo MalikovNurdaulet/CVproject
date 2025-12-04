@@ -704,7 +704,7 @@ main {
 
 .navbar-link {
   color: var(--light-gray);
-  font-size: var(--fs-8);
+  font-size: var(--fs-7);
   padding: 20px 7px;
   transition: color var(--transition-1);
 }
@@ -713,6 +713,13 @@ main {
 .navbar-link:focus { color: var(--light-gray-70); }
 
 .navbar-link.active { color: var(--orange-yellow-crayola); }
+
+@media (max-width: 580px) {
+  .navbar-link {
+    font-size: var(--fs-6);
+    padding: 18px 10px;
+  }
+}
 
 
 
@@ -767,7 +774,6 @@ main {
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
-
 
 
 /**
