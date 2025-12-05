@@ -64,7 +64,7 @@ overlay.addEventListener("click", testimonialsModalFunc);
 // custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
+const selectValue = document.querySelector("[data-select-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
@@ -86,11 +86,17 @@ const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
 
+  // каждый раз берём актуальный список карточек,
+  // включая те, что подгрузил projects.js
+  const filterItems = document.querySelectorAll("[data-filter-item]");
+
   for (let i = 0; i < filterItems.length; i++) {
+
+    const itemCategory = (filterItems[i].dataset.category || "").toLowerCase();
 
     if (selectedValue === "all") {
       filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
+    } else if (selectedValue === itemCategory) {
       filterItems[i].classList.add("active");
     } else {
       filterItems[i].classList.remove("active");
@@ -99,6 +105,7 @@ const filterFunc = function (selectedValue) {
   }
 
 }
+
 
 // add event in all filter button items for large screen
 let lastClickedBtn = filterBtn[0];

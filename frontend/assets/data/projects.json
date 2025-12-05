@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Auton8n — автоматизация процессов",
+        "category": "applications",
+        "category_label": "Applications",
+        "image": "./assets/images/project-1.jpg",
+        "link": "projects/auton8n/index.html",
+        "stack": "FastAPI · n8n · PostgreSQL"
+    },
+    {
+        "title": "RepairBot — аналитика заявок по ремонту",
+        "category": "dashboard",
+        "category_label": "Dashboard",
+        "image": "./assets/images/project-2.png",
+        "link": "projects/repairbot/index.html",
+        "stack": "Python · BI · аналитика"
+    },
+    {
+        "title": "Portfolio CV Website",
+        "category": "web development",
+        "category_label": "Web development",
+        "image": "./assets/images/project-3.jpg",
+        "link": "index.html",
+        "stack": "HTML · CSS · JS"
+    }
+]

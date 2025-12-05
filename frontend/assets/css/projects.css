@@ -1,0 +1,119 @@
+/* ============================
+   Projects section styles
+   ============================ */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}   
+
+.project-item a {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    height: 100%;
+    padding: 16px;
+    background: var(--eerie-black-2);
+    border: 1px solid var(--jet);
+    border-radius: 16px;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.project-item a:hover {
+    transform: translateY(-6px);
+    border-color: var(--orange-yellow-crayola);
+    box-shadow: 0 0 12px rgba(255, 189, 89, 0.25);
+}
+
+.project-img {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    background: #222; /* fallback */
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.project-item-icon-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: var(--jet);
+    padding: 10px;
+    border-radius: 50%;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.project-item-icon-box ion-icon {
+    font-size: 22px;
+    color: var(--orange-yellow-crayola);
+    transition: color 0.3s ease;
+}
+
+.project-item a:hover .project-item-icon-box {
+    opacity: 1;
+    background: var(--orange-yellow-crayola);
+}
+
+.project-item a:hover .project-item-icon-box ion-icon {
+    color: var(--smoky-black);
+}
+
+.project-title {
+    color: var(--white-2);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.project-category {
+    color: var(--light-gray);
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.project-stack {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 0.85rem;
+    color: var(--orange-yellow-crayola);
+    font-weight: 500;
+}
+
+.project-item {
+animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+from {
+    opacity: 0;
+    transform: translateY(8px);
+    }
+to {
+    opacity: 1;
+    transform: translateY(0px);
+}
+}
